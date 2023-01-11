@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -11,12 +12,19 @@ const Input = styled.input`
 border-radius: 5px;
 padding: 5px
 `
+const Div= styled.div`
+text-align: right;
+`
 
-export default function SearchBar(props) {
+export default function SearchBar({onSearch}) {
+   const [character,setCharacter]=useState("")
+   const handleChange=(e)=>{
+      setCharacter(e.target.value)
+   }
    return (
-      <div>
-          <Input type='search' />
-      <Button onClick={()=>props.onSearch("pepe")}>Agregar</Button> 
-      </div>
+      <Div >
+         <Input type='search' placeholder="Buscar"  onChange={handleChange}/>
+         <Button onClick={()=>onSearch(character)}>Agregar</Button> 
+      </Div>
    );
 }

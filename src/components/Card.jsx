@@ -42,7 +42,7 @@ export default function Card(props) {
 
    return (
       <StyledCard>
-         <Button onClick={()=>props.onClose()}>X</Button>
+         <Button onClick={()=>props.onClose(props.id)}>X</Button>
          <Img  src={props.image} alt="" />
          <Name>{props.name}</Name>
          <Spec>
