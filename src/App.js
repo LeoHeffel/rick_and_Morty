@@ -8,8 +8,7 @@ import Form from './components/Form/Form.jsx'
 import Favorites from './components/favorites/Favorites.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, Route, Routes, useLocation } from 'react-router-dom'
-import { Provider } from 'react-redux';
-import store from './redux/store';
+
 
 
 
@@ -63,7 +62,7 @@ function App() {
     <div className='App' style={{ padding: '25px' }}>
       <div >
         {location.pathname!== '/' &&<NavBar onSearch={onSearch} logout={logout} />}
-       <Provider  store={store}>
+      
          <Routes>
           <Route path='/' element={<Form login={login}/>} />
           <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
@@ -72,7 +71,7 @@ function App() {
           <Route path='/detail/:detailId' element={<Details />} />
           <Route path='*' element={<Error />} />
         </Routes>
-       </Provider>
+    
        
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-
+import { addFavorite, removeFavorite } from "../redux/actions.js";
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
 
@@ -44,6 +45,7 @@ font-weight: lighter;
 
 export const Card = ({ name, species, gender, image, id, removeFavorite, addFavorite, myFavorites, onClose }) => {
 
+  
    const [isFav, setIsFav] = React.useState(false)
    const handleFavorite = () => {
       isFav ? removeFavorite(id) : addFavorite({ name, species, gender, image, id })
@@ -56,7 +58,7 @@ export const Card = ({ name, species, gender, image, id, removeFavorite, addFavo
             setIsFav(true)
          }                   
       } 
-   }, [id])
+   }, [myFavorites])
 
    return (
       <StyledCard>
@@ -74,3 +76,21 @@ export const Card = ({ name, species, gender, image, id, removeFavorite, addFavo
 
 
 
+function mapDispatchToProps(dispatch) {
+   return {
+      addFavorite: (personaje) => {
+         dispatch(addFavorite(personaje))
+      },
+      removeFavorite: (id) => {
+         dispatch(removeFavorite(id))
+      }
+   }
+}
+
+function mapStateToProps(state) {
+   return {
+      myFavorites: state.myFavorites,
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
