@@ -18,7 +18,7 @@ const  {detailId}= useParams()
 const [character,setCharacter]= useState({})
 const navigate = useNavigate()
 useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    fetch(`http://localhost:3001/rickandmorty/detail/${detailId}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {
