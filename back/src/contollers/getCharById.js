@@ -1,5 +1,5 @@
 
-module.exports= getCharById = (res, id) => {
+module.exports = getCharById = (res, id) => {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
         .then(response => response.json())
         .then(data => {
