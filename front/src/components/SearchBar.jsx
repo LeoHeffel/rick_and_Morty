@@ -18,13 +18,23 @@ text-align: right;
 
 export default function SearchBar({onSearch}) {
    const [character,setCharacter]=useState("")
+   
    const handleChange=(e)=>{
       setCharacter(e.target.value)
    }
+
+   const handleSearch =()=>{
+      let id = character.trim()
+      if(id) onSearch(character)
+      else window.alert('ingrese un id valido')
+   }
+
+
+
    return (
       <Div >
-         <Input type='search' placeholder="Buscar"  onChange={handleChange}/>
-         <Button onClick={()=>onSearch(character)}>Agregar</Button> 
+         <Input type='number'  placeholder="Buscar"  onChange={handleChange}/>
+         <Button onClick={()=>handleSearch()}>Agregar</Button> 
       </Div>
    );
 }

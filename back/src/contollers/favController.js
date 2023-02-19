@@ -1,17 +1,9 @@
 let favs = []
 
 getFav = (req, res) => {
-    const { id } = req.params
-    if (!id) res.status(400)
-    else {
-        let fav = favs.find(fav => fav.id === id)
-        if (fav?.id == id) {
-            res.status(200).send(fav)
-        }
-        res.status(404).send({ error: 'id no encontrado' })
-    }
-
+            res.status(200).send(favs)
 }
+
 postFav = (req, res) => {
     const { name, species, gender, image, id }=req.body
     if ( !name|| !species|| !gender|| !image||!id ) res.status(400)
@@ -19,9 +11,10 @@ postFav = (req, res) => {
         let fav = favs.find(fav => fav.id === id)
         if (fav?.id == id) {
             res.status(400).send({error:'Favorito existente'})
+        }else{
+            favs.push({ name, species, gender, image, id })
+        res.status(201).send(favs)
         }
-        favs.push({ name, species, gender, image, id })
-        res.status(201).send({ success: 'Favorito agregado' })
     }
 }
 
@@ -29,12 +22,13 @@ deleteFav = (req, res) => {
     const { id } = req.params
     if (!id) res.status(400)
     else {
-        let fav = favs.findIndex(fav => fav.id === id)
-        if (fav== -1) {
+        let favIndex = favs.findIndex(fav =>  fav.id == id  )        
+        if (favIndex == -1) {
             res.status(404).send({ error: 'id no encontrado' })
+        }else{
+             favs.splice(favIndex, 1)
+        res.status(200).send(favs)
         }
-        favs.splice(fav, 1)
-        res.status(200).send({ success: 'Favorito eliminado' })
     }
 }
 

@@ -8,8 +8,8 @@ import Form from './components/Form/Form.jsx'
 import Favorites from './components/favorites/Favorites.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, Route, Routes, useLocation } from 'react-router-dom'
-
-
+import { useDispatch } from 'react-redux';
+import { getFavorites, removeFavorites } from './redux/actions.js';
 
 
 
@@ -37,24 +37,30 @@ function App() {
   }
 
 
-  function onSearch(character) {
-    fetch(`http://localhost:3001/rickandmorty/character/${character}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.name) {
-          if (characters.find(char => char.id === data.id)) window.alert('ID Repetido');
-          else setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert('No hay personajes con ese ID');
-        }
-      });
-  }
+  function onSearch(id) {
+    let existente = characters.findIndex(char => char.id == id)
+    if (existente !== -1) window.alert('ID Repetido')
+    else {
+      fetch(`http://localhost:3001/rickandmorty/character/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+          } else {
+            window.alert('No hay personajes con ese ID');
+          }
+        });
+    }
 
+  }
+  const dispatch = useDispatch()
   const onClose = (id) => {
+    dispatch(removeFavorites(id))
     setCharacters(characters.filter(char => char.id !== id))
   }
 
   useEffect(() => {
+    dispatch(getFavorites())
     !access && navigate('/')
   }, [access])
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect,useDispatch } from 'react-redux';
 import styled from "styled-components";
-import { orderCards,filterCards } from '../../redux/actions.js';
+import { orderCards,filterCards,getFavorites } from '../../redux/actions.js';
 
 
 const StyledCard = styled.div`
@@ -33,14 +33,14 @@ padding-top: 5px
 
 
 export const Favorites = ({ myFavorites }) => {
-
+    
+    const dispatch = useDispatch()
     const [favs, setFavs] = React.useState([])
+ 
     React.useEffect(() => {
         setFavs(myFavorites,)
-
     }, [myFavorites])
 
-    const dispatch = useDispatch()
 
    const handleDispatch=(e)=>{
     const {name,value}=e.target
@@ -51,7 +51,7 @@ export const Favorites = ({ myFavorites }) => {
         return dispatch(filterCards(value))
     }
    }
-
+   
     return (
         <div>
             <div>
@@ -67,14 +67,15 @@ export const Favorites = ({ myFavorites }) => {
                 </select>
             </div>
             <StyledCards>
-                {favs.map(favorito =>
+                {favs.length?
+                favs.map(favorito =>
 
-                    <StyledCard>
+                    <StyledCard key={favorito.name}>
                         <Img src={favorito.image} alt="" />
                         <Name>{favorito.name}</Name>
                     </StyledCard>
-                )}
-
+                )
+                : <h2>No hay favoritos</h2>}
             </StyledCards>
         </div>
 

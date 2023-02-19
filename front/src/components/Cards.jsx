@@ -1,17 +1,18 @@
 import Card from './Card.jsx';
 import styled from 'styled-components';
-/* import { addFavorite, removeFavorite } from "../redux/actions.js";
-import { connect } from 'react-redux'; */
+
 const StyledCards = styled.div`
 display: flex;
 justify-content:space-around;
+flex-wrap: wrap
 `
 
 export default function Cards(props) {
    const { characters } = props;
    return (
    <StyledCards>
-      {characters.map(personaje => <Card key={personaje.id}
+      {characters.length?
+      characters.map(personaje => <Card key={personaje.id}
           name={personaje.name}
           species={personaje.species}
           gender={personaje.gender}
@@ -19,7 +20,8 @@ export default function Cards(props) {
           onClose={props.onClose}
 
           id={personaje.id}
-        />)}
+        />)
+        :<h2>No has agregado personajes</h2>}
    </StyledCards>)
 }
 

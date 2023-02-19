@@ -1,19 +1,20 @@
 
-module.exports = getCharDetail = (req, res) => {
+module.exports = getCharDetail = async (req, res) => {
     const { id } = req.params
     if (!id) res.status(400)
     else {
-        fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data?.id == id) {
-                    res.status(200).send({ image: data.image, name: data.name, gender: data.gender, status: data.status, origin: data.origin, species: data.species })
-                }else{
+        try {
+            const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+            const data = await response.json()
+            if (data?.id == id) {
+                res.status(200).send({ image: data.image, name: data.name, gender: data.gender, status: data.status, origin: data.origin, species: data.species })
+            } else {
+                res.status(404).send({ error: 'id no encontrado' })
+            }
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
 
-                    res.status(404).send({ error: 'id no encontrado' })
-                }
-            })
-            .catch((err) => res.status(500).send(err.message))
     }
 }
 

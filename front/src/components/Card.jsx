@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import { addFavorite, removeFavorite } from "../redux/actions.js";
+import {getFavorites, addFavorites, removeFavorites } from "../redux/actions.js";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
@@ -43,14 +43,15 @@ font-size: 18px;
 font-weight: lighter;
 `
 
-export const Card = ({ name, species, gender, image, id, removeFavorite, addFavorite, myFavorites, onClose }) => {
+export const Card = ({ name, species, gender, image, id, removeFavorites, addFavorites, myFavorites, onClose }) => {
 
   
    const [isFav, setIsFav] = React.useState(false)
    const handleFavorite = () => {
-      isFav ? removeFavorite(id) : addFavorite({ name, species, gender, image, id })
+      isFav ? removeFavorites(id) : addFavorites({ name, species, gender, image, id })
       setIsFav(!isFav)
    }
+
 
    React.useEffect(() => {
        for(let i =0;i<myFavorites.length; i++){
@@ -78,11 +79,14 @@ export const Card = ({ name, species, gender, image, id, removeFavorite, addFavo
 
 function mapDispatchToProps(dispatch) {
    return {
-      addFavorite: (personaje) => {
-         dispatch(addFavorite(personaje))
+      addFavorites: (personaje) => {
+         dispatch(addFavorites(personaje))
       },
-      removeFavorite: (id) => {
-         dispatch(removeFavorite(id))
+      removeFavorites: (id) => {
+         dispatch(removeFavorites(id))
+      },
+      getFavorites:()=>{
+         dispatch(getFavorites())
       }
    }
 }
