@@ -18,4 +18,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use('/rickandmorty/character/', routerCharacter)
 app.use('/rickandmorty/detail/', routerDetail)
 app.use('/rickandmorty/fav/', routerFav)
+app.all('*', (req,res)=>{
+    res.status(404).send({error: 'Ruta no implementada'})
+})
 module.exports=app
