@@ -18,7 +18,7 @@ import { getFavorites, removeFavorites } from './redux/actions.js';
 
 function App() {
   const [characters, setCharacters] = useState([])
-  const [access, setAccess] = useState(true)
+  const [access, setAccess] = useState(false)
   const username = "mail@mail.com"
   const password = "1234"
   const location = useLocation()
