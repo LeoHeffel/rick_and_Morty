@@ -1,3 +1,5 @@
+const { Character } = require('../DB_connection');
+
 
 module.exports = getCharDetail = async (req, res) => {
     const { id } = req.params

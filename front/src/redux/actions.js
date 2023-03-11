@@ -1,7 +1,7 @@
 //crear los types en archivo aparte
 import axios from 'axios'
 
-/* export const addFavorite = (personaje) => {
+export const addFavorite = (personaje) => {
     return {
         type: "ADD_FAVORITE",
         payload: personaje
@@ -13,7 +13,7 @@ export const removeFavorite = (id) => {
         type: "REMOVE_FAVORITE",
         payload: id
     }
-} */
+} 
 
 export const filterCards = (status) => {
     return {
@@ -56,7 +56,7 @@ export function addFavorites(favorito) {
     return async function (dispatch) {
         try {
             const {data} = await axios.post(`http://localhost:3001/rickandmorty/fav`, favorito)
-            dispatch(updateFavorites(data))
+            dispatch(addFavorite(data))
         }
         catch (error) {
             console.log(error)
@@ -69,7 +69,7 @@ export function removeFavorites(id) {
     return async function (dispatch) {
         try {
             const {data} = await axios.delete(`http://localhost:3001/rickandmorty/fav/${id}`)
-            dispatch(updateFavorites(data))
+            dispatch(removeFavorite(data.id))
         }
         catch (error) {
             console.log(error)

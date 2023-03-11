@@ -43,12 +43,12 @@ font-size: 18px;
 font-weight: lighter;
 `
 
-export const Card = ({ name, species, gender, image, id, removeFavorites, addFavorites, myFavorites, onClose }) => {
+export const Card = ({ id, name, status, species, gender, origin, image, removeFavorites, addFavorites, myFavorites, onClose }) => {
 
   
    const [isFav, setIsFav] = React.useState(false)
    const handleFavorite = () => {
-      isFav ? removeFavorites(id) : addFavorites({ name, species, gender, image, id })
+      isFav ? removeFavorites(id) : addFavorites({ id, name, status, species, gender, origin, image })
       setIsFav(!isFav)
    }
 

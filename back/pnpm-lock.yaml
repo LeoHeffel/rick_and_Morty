@@ -9,6 +9,7 @@ specifiers:
   jest: ^29.4.3
   nodemon: ^2.0.20
   pg: ^8.10.0
+  pg-hstore: ^2.3.4
   sequelize: ^6.29.1
   supertest: ^6.3.3
 
@@ -21,7 +22,8 @@ dependencies:
   jest: 29.4.3
   nodemon: 2.0.20
   pg: 8.10.0
-  sequelize: 6.29.1_pg@8.10.0
+  pg-hstore: 2.3.4
+  sequelize: 6.29.1_pg-hstore@2.3.4+pg@8.10.0
   supertest: 6.3.3
 
 packages:
@@ -2459,6 +2461,13 @@ packages:
     resolution: {integrity: sha512-r5o/V/ORTA6TmUnyWZR9nCj1klXCO2CEKNRlVuJptZe85QuhFayC7WeMic7ndayT5IRIR0S0xFxFi2ousartlQ==}
     dev: false
 
+  /pg-hstore/2.3.4:
+    resolution: {integrity: sha512-N3SGs/Rf+xA1M2/n0JBiXFDVMzdekwLZLAO0g7mpDY9ouX+fDI7jS6kTq3JujmYbtNSJ53TJ0q4G98KVZSM4EA==}
+    engines: {node: '>= 0.8.x'}
+    dependencies:
+      underscore: 1.13.6
+    dev: false
+
   /pg-int8/1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
@@ -2712,7 +2721,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: false
 
-  /sequelize/6.29.1_pg@8.10.0:
+  /sequelize/6.29.1_pg-hstore@2.3.4+pg@8.10.0:
     resolution: {integrity: sha512-EL7HAPtOFyi2h3O4lVdetAzDK0AkLQkK608CRRKB8U9o2swx+4MQKgxAIdcJsB0vud6LqKdVLL7Vfc51glgTYA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -2755,6 +2764,7 @@ packages:
       moment-timezone: 0.5.41
       pg: 8.10.0
       pg-connection-string: 2.5.0
+      pg-hstore: 2.3.4
       retry-as-promised: 7.0.4
       semver: 7.3.8
       sequelize-pool: 7.1.0
@@ -3009,6 +3019,10 @@ packages:
 
   /undefsafe/2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
+    dev: false
+
+  /underscore/1.13.6:
+    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==}
     dev: false
 
   /unpipe/1.0.0:

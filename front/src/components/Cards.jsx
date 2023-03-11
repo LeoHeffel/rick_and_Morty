@@ -17,6 +17,8 @@ export default function Cards(props) {
           species={personaje.species}
           gender={personaje.gender}
           image={personaje.image}
+          status={personaje.status}
+          origin={personaje.origin}
           onClose={props.onClose}
 
           id={personaje.id}

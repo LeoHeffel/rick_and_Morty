@@ -5,7 +5,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-   /*      case 'ADD_FAVORITE':
+        case 'ADD_FAVORITE':
             return {
                 ...state,
                 allCharacters: [...state.allCharacters, payload],
@@ -17,7 +17,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 myFavorites: state.myFavorites.filter(elem => elem.id !== payload),
                 allCharacters: state.allCharacters.filter(elem => elem.id !== payload)
-            } */
+            } 
 
         case 'FILTER':
             return {

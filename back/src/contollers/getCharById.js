@@ -1,13 +1,14 @@
+const { Character } = require('../DB_connection');
+
 
 module.exports = getCharById = async (req, res) => {
     const { id } = req.params
     if (!id) res.status(400)
     else {
         try{
-            const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            const data = await response.json()
+            const data= await Character.findByPk(id)
             if (data?.id == id) {
-                    res.status(200).send({ id: data.id, image: data.image, name: data.name, gender: data.gender, species: data.species })
+                    res.status(200).send(data)
                 }
                 else res.status(404).send({ error: 'id no encontrado' })
         }
