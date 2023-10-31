@@ -5,10 +5,15 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        case 'SET_CHARACTERS':
+            
+            return {
+                ...state,
+                allCharacters: state.allCharacters = payload
+            }
         case 'ADD_FAVORITE':
             return {
                 ...state,
-                allCharacters: [...state.allCharacters, payload],
                 myFavorites: [...state.myFavorites, payload]
             }
 
@@ -16,16 +21,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 myFavorites: state.myFavorites.filter(elem => elem.id !== payload),
-                allCharacters: state.allCharacters.filter(elem => elem.id !== payload)
+                
             } 
 
         case 'FILTER':
             return {
                 ...state,
-                myFavorites: state.allCharacters.filter(char => char.gender === payload)
+                myFavorites: state.myFavorites.filter(char => char.gender === payload)
             }
         case 'ORDER':
-            const orderCopy = [...state.allCharacters]
+            const orderCopy = [...state.myFavorites]
             const ordered = orderCopy.sort((a, b) => {
                 if (a.id > b.id) {
                     return payload === 'Ascendente' ? 1 : -1
@@ -42,7 +47,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
              case 'UPDATE_FAVORITES':
                 return {
                     ...state,
-                    allCharacters: payload,
                     myFavorites: payload
                 } 
         default: return { ...state }

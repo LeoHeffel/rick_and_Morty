@@ -37,7 +37,12 @@ export const updateFavorites = (favorites) => {
         payload: favorites
     }
 }
-
+export const setCharacters = (characters) => {
+    return {
+        type: "SET_CHARACTERS",
+        payload: characters
+    }
+}
 
 
 export function getFavorites() {
@@ -45,6 +50,18 @@ export function getFavorites() {
         try {
             const {data} = await axios.get(`http://localhost:3001/rickandmorty/fav`)
             dispatch(updateFavorites(data))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function getAll() {
+    return async function (dispatch) {
+        try {
+            const {data} = await axios.get(`http://localhost:3001/rickandmorty/allCharacters`)
+            dispatch(setCharacters(data))
         }
         catch (error) {
             console.log(error)

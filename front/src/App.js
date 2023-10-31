@@ -9,7 +9,7 @@ import Favorites from './components/favorites/Favorites.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { getFavorites, removeFavorites } from './redux/actions.js';
+import { getAll, getFavorites, removeFavorites } from './redux/actions.js';
 
 
 
@@ -28,6 +28,7 @@ function App() {
   const login = (userData) => {
     if (userData.username === username & userData.password === password) {
       setAccess(true)
+      dispatch(getAll())
       navigate('/home')
     }
   }
@@ -60,6 +61,7 @@ function App() {
   }
 
   useEffect(() => {
+    dispatch(getAll())
     dispatch(getFavorites())
     !access && navigate('/')
   }, [access])
